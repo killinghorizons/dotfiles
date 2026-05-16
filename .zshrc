@@ -69,7 +69,8 @@ zstyle ":fzf-tab:complete:__zoxide_z:*" fzf-preview "ls --color $realpath"
 alias update="sudo dnf update"
 alias del="sudo dnf remove"
 alias autoremove="sudo dnf autoremove"
-alias ls="ls --color"
+alias ls='eza --icons'
+alias ll='eza -l --icons'
 # :)
 alias sl="ls --color"
 

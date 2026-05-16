@@ -34,9 +34,10 @@ hl.config({
         border_size = 2,
         resize_on_border = true,
         col = {
-            active_border = { colors = { "rgb(d0b5f3)" } },
+            active_border = { colors = { "rgb(135,206,235)" } },
         },
         allow_tearing = false,
+        layout = "scrolling",
     },
     ecosystem = {
         no_update_news = true,
@@ -54,7 +55,7 @@ hl.config({
 
     scrolling = {
         fullscreen_on_one_column = true,
-        column_width = 0.9,
+        column_width = 0.5,
         direction = "right",
     },
 
@@ -90,7 +91,8 @@ hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = 1 }))
 hl.bind(mainMod .. " + C", hl.dsp.window.center())
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/exit-hypr.sh"))
-hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/powermenu.sh"))
+-- hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/powermenu.sh"))
+hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call sessionMenu toggle"))
 hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
@@ -179,6 +181,13 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
+hl.bind("SUPER + Print", hl.dsp.exec_cmd("hyprshot -m window"))
+hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region"))
+hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m output"))
+
+-- hl.bind("SUPER + Print", hl.dsp.exec_cmd('hyprshot -m window -o ~/Pictures/Screenshots'))
+-- hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd('hyprshot -m region -o ~/Pictures/Screenshots'))
+-- hl.bind("Print", hl.dsp.exec_cmd('hyprshot -m output -o ~/Pictures/Screenshots'))
 -- Window rules
 local suppressMaximizeRule = hl.window_rule({
     -- Ignore maximize requests from all apps. You'll probably like this.
@@ -205,5 +214,4 @@ hl.window_rule({
 
 hl.window_rule({ match = { class = "nwg-look" }, float = true, size = { 800, 500 } })
 hl.window_rule({ match = { class = "xdg-desktop-portal-gtk" }, center = true, float = true, size = { 900, 600 } })
-
 hl.window_rule({ match = { class = "discord" }, workspace = "4 silent" })

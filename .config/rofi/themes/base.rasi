@@ -1,0 +1,82 @@
+configuration {
+    font: "JetBrainsMono Nerd Font Mono 12";
+    icon-theme: "Win10Sur";
+    show-icons: true;
+    sidebar-mode: true;
+    window-thumbnail: true;
+}
+
+* {
+    bg0:     #101010;
+    bg1:     #666666;
+    fg0:     #ffffff;
+    accent:  #d9ba73;
+    urgent:  #FB4934;
+
+    background-color: transparent;
+    text-color:       @fg0;
+}
+
+window {
+    width:            600px;
+    background-color: @bg0;
+    border:           1px;
+    border-color:     #222222;
+    padding:          0;
+    border-radius: 0.5em;
+    width:      600px;
+    height:     250px;
+}
+
+mainbox {
+    padding: 15px;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    background-color: @bg1;
+    padding:          10px;
+    margin:           0 0 10px 0;
+    children:         [ prompt, entry ];
+    border-radius: 0.25em;
+}
+
+prompt {
+    margin: 0 10px 0 0;
+}
+
+entry {
+    placeholder:       "Search...";
+    placeholder-color: #5c6a72;
+}
+
+listview {
+    lines:        8;
+    columns:      1;
+    fixed-height: false;
+    spacing:      4px;
+}
+
+element {
+    padding:       8px;
+    cursor:        pointer;
+}
+
+element-text {
+    text-color: inherit;
+    background-color: transparent;
+    vertical-align: 0.5;
+}
+
+element-icon {
+    size: 24px;
+    margin: 0 10px 0 0;
+    background-color: transparent;
+    text-color: inherit;
+}
+
+element selected {
+    border-radius: 0.25em;
+    color: @fg0;
+    background-color: @bg1;
+}

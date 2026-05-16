@@ -1,0 +1,90 @@
+* {
+  border-radius: 0;
+  font-family: JetBrains Mono Nerd Font Mono;
+  font-size: 12px;
+  margin: 0 1px;
+}
+
+#waybar {
+  color: #ffffff;
+  background-color: #101010;
+}
+
+#clock,
+#pulseaudio,
+#network,
+#backlight,
+#battery,
+#power-profiles-daemon {
+  margin: 0 10px;
+  padding: 0;
+}
+
+#clock,
+#clock-date {
+  font-weight: 900;
+  color: #86cd82;
+  padding: 0;
+}
+
+#tray {
+  padding: 0 5px;
+  color: #ffffff;
+}
+
+#tray>.passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray>.needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #ff5733;
+}
+
+#taskbar {
+  background: transparent;
+  padding: 0 5px;
+}
+
+#taskbar button {
+  min-width: 0;
+  background: transparent;
+  color: #ffffff;
+  opacity: 0.5;
+  transition: all 0.2s ease;
+  border: none;
+  box-shadow: none;
+}
+
+#taskbar button.active {
+  background: rgba(255, 255, 255, 0.15);
+  opacity: 1;
+  border-bottom: 2px solid #86cd82;
+}
+
+#taskbar button.minimized {
+  opacity: 0.35;
+  text-decoration: line-through;
+}
+
+
+#workspaces {
+  padding: 0 5px;
+  font-weight: 900;
+}
+
+#workspaces button {
+  min-width: 0;
+  opacity: 0.4;
+  transition: all 0.2s ease;
+  border: none;
+  box-shadow: none;
+  color: #ffffff;
+}
+
+#workspaces button.active {
+  opacity: 1;
+  text-decoration: none;
+  color: #86cd82;
+  font-weight: 900;
+}

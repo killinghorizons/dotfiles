@@ -1,0 +1,69 @@
+configuration {
+    location:                       0;
+    font:                           "JetBrainsMono Nerd Font Mono 12:style=regular";
+}
+
+
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+  background: #101010;
+  background-alt: #272727;
+  line: #44475a;
+  foreground: #ffffff;
+  foreground-alt: #fafafa;
+  comment: #6272a4;
+  selected: #86cd82;
+  background-color: @background;
+}
+
+
+window {
+    background-color:               @background;
+    border:                         3px;
+    border-color:                   @selected;
+    border-radius:                  60px;
+    width:                          600px;
+    height:                         120px;
+    x-offset:                       -4;
+    y-offset:                       0;
+    line-height: 0;
+}
+
+listview {
+    background-color:               @background;
+    columns:                        5;
+    lines:                          5;
+    layout:                         horizontal;
+    line-height:                    0;
+    padding:                        40px 10px;
+    expand:                         false;
+}
+
+mainbox {
+    background-color:               @background;
+    children:                       [ listview ];
+    expand:                         true;
+}
+
+element {
+    background-color:               @background;
+    text-color:                     @foreground;
+    orientation:                    horizontal;
+}
+
+element-text {
+    background-color:               inherit;
+    text-color:                     inherit;
+    font:                           "JetBrainsMono Nerd Font Mono 20";
+    expand:                         false;
+    margin:                         0;
+}
+
+element selected {
+    text-color:                     @selected;
+    border:                         0px;
+    border-color:                   @selected;
+}

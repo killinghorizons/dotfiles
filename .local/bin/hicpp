@@ -1,0 +1,42 @@
+#!/bin/bash
+mkdir -p $1
+mkdir -p $1/src
+
+cat <<'EOF' >$1/style.md
+# Google code style basics
+
+- Variables -> snake_case -> my_variable, point_count
+- Functions/Methods -> PascalCase -> Distance(), ComputeArea()
+- Classes/Structs -> PascalCase -> Point, User
+- Constant/constexpr -> kPascaleCase -> kMaxSize, kDefaultValue
+- Macros -> UPPER_SNAKE_CASE -> MY_MACRO
+- Namespaces -> snake_cases -> my_namespace
+- Enum values -> kPascalCasse -> kEnumValue
+- file names -> snake_cases -> my_class.h
+EOF
+
+cat <<'EOF' >$1/src/main.cpp
+#include <iostream>
+
+int main() {
+  std::cout << "Hello, World!" << '\n';
+  return 0;
+}
+EOF
+
+cat <<'EOF' >$1/.clang-format
+BasedOnStyle: Google
+AlignAfterOpenBracket: BlockIndent
+BinPackParameters: false
+BinPackArguments: false
+ColumnLimit: 80
+EOF
+
+cat <<'EOF' >$1/compile_flags.txt
+-std=c++20
+EOF
+
+cat <<'EOF' >.clang-tidy
+Checks: 'clang-diagnostic-*,clang-analyzer-*'
+WarningsAsErrors: ''
+EOF

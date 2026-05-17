@@ -1,6 +1,6 @@
 {
   "layer": "top",
-  "modules-left": ["ext/workspaces", "custom/sep"],
+  "modules-left": ["custom/sep", "ext/workspaces", "custom/sep"],
   "modules-center": [],
   "modules-right": [
     "custom/sep",
@@ -55,7 +55,7 @@
   },
   "ext/workspaces": {
     "format": "{icon}",
-    "ignore-hidden": false,
+    "ignore-hidden": true,
     "on-click": "activate",
     "sort-by-id": true
   },
@@ -67,7 +67,7 @@
     "tooltip": false,
     "scroll-step": 5,
     "format": "{icon} {volume}%",
-    "format-muted": "󰝟 muted",
+    "format-muted": "muted",
     "on-click": "pavucontrol",
     "format-icons": {
       "default": ["󰕿", "󰖀", "󰕾"]

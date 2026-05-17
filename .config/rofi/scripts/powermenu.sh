@@ -18,7 +18,7 @@ $shutdown" | rofi -dmenu -i -p "Power" \
 if [ "$selected_option" == "$lock" ]; then
     hyprlock
 elif [ "$selected_option" == "$logout" ]; then
-    hyprctl dispatch exit
+    hyprctl dispatch 'hl.dsp.exit()'
 elif [ "$selected_option" == "$shutdown" ]; then
     systemctl poweroff
 elif [ "$selected_option" == "$reboot" ]; then

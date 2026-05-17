@@ -4,18 +4,21 @@
 input {
     mod-key "Alt"
 
+    keyboard {
+        repeat-delay 200
+        repeat-rate 35
+    }
+
     touchpad {
         tap // Enable tap-to-click
         natural-scroll // Enable natural (macOS-style) scrolling
     }
 
     mouse {
-        // If you want to disable Mouse Acceleration,
-        // uncomment the lines below.
         accel-profile "flat"
         accel-speed 0.0
     }
 
     focus-follows-mouse
-    workspace-auto-back-and-forth // Enable workspace back & forth switching
+    workspace-auto-back-and-forth
 }

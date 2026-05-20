@@ -43,3 +43,5 @@ abbr -a mirror sudo cachyos-rate-mirrors
 # Cleanup orphaned packages
 # Get the error messages from journalctl
 abbr -a jctl journalctl -p 3 -xb
+
+fnm env --use-on-cd | source

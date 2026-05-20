@@ -1,16 +1,15 @@
 {
   "layer": "top",
-  "modules-left": ["custom/sep", "ext/workspaces", "custom/sep"],
-  "modules-center": [],
+  "modules-left": ["custom/sep", "hyprland/workspaces", "custom/sep"],
   "modules-right": [
-    "custom/sep",
-    "network",
-    "custom/sep",
-    "cpu",
-    "custom/sep",
-    "memory",
-    "custom/sep",
-    "disk",
+    // "custom/sep",
+    // "network",
+    // "custom/sep",
+    // "cpu",
+    // "custom/sep",
+    // "memory",
+    // "custom/sep",
+    // "disk",
     "custom/sep",
     "power-profiles-daemon",
     "custom/sep",
@@ -53,7 +52,7 @@
     "format": "Online",
     "format-disconnected": "Disconnected ⚠"
   },
-  "ext/workspaces": {
+  "hyprland/workspaces": {
     "format": "{icon}",
     "ignore-hidden": true,
     "on-click": "activate",

@@ -1,15 +1,16 @@
 -- Variables
 local terminal = "foot"
 local fileManager = "nautilus"
+local browser = "google-chrome-unstable"
+local rofi_cmd = "rofi -show drun"
 local mainMod = "ALT"
 local home = os.getenv("HOME")
 
 -- Autostart
 hl.on("hyprland.start", function()
     hl.exec_cmd("hyprsunset")
-    hl.exec_cmd("discord")
     hl.exec_cmd("waybar")
-    hl.exec_cmd("swaybg -i ~/.config/hypr/walls/arch.png")
+    hl.exec_cmd("swaybg -i ~/.config/hypr/walls/geisha_colors.jpeg")
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
 end)
 
@@ -61,11 +62,11 @@ hl.config({
         no_hardware_cursors = false,
     },
 
-    -- scrolling = {
-    --     fullscreen_on_one_column = true,
-    --     column_width = 0.5,
-    --     direction = "right",
-    -- },
+    scrolling = {
+        fullscreen_on_one_column = true,
+        column_width = 0.5,
+        direction = "right",
+    },
 
     misc = {
         disable_hyprland_logo = true,
@@ -103,12 +104,12 @@ hl.animation({ leaf = "windows", enabled = true, speed = 5, bezier = "easeOut" }
 -- animation = windowsIn, 1, 5, default, popin
 hl.animation({ leaf = "windowsIn", enabled = true, speed = 5, bezier = "default", style = "popin" })
 -- animation = workspaces, 1, 6, default
-hl.animation({ leaf = "workspaces", enabled = true, speed = 6, bezier = "default" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 7, bezier = "default" })
 
 -- Binds
 -- Programs
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("rofi -show drun"))
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("google-chrome-unstable"))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(rofi_cmd))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("~/.config/rofi/scripts/powermenu.sh"))
@@ -241,23 +242,8 @@ hl.window_rule({ match = { class = "nwg-look" }, float = true, size = { 800, 500
 hl.window_rule({ match = { class = "xdg-desktop-portal-gtk" }, center = true, float = true, size = { 900, 600 } })
 hl.window_rule({ match = { class = "discord" }, workspace = "4 silent" })
 
-hl.window_rule({ name = "file-roller-float", match = { class = "^(file-roller)$" }, float = true })
-hl.window_rule({ name = "file-roller-center", match = { class = "^(file-roller)$" }, center = true })
-
 hl.window_rule({ name = "modal-open", match = { title = "^(Open)$" }, float = true })
 hl.window_rule({ name = "modal-choose-files", match = { title = "^(Choose Files)$" }, float = true })
 hl.window_rule({ name = "modal-save-as", match = { title = "^(Save As)$" }, float = true })
 hl.window_rule({ name = "modal-confirm-replace", match = { title = "^(Confirm to replace files)$" }, float = true })
 hl.window_rule({ name = "modal-file-op-progress", match = { title = "^(File Operation Progress)$" }, float = true })
-
-hl.window_rule({
-    name = "chrome-open-files",
-    match = { class = "^(google-chrome)$", title = "^(Open Files)$" },
-    float = true,
-})
-
-hl.window_rule({
-    name = "chrome-open-file",
-    match = { class = "^(google-chrome)$", title = "^(Open File)$" },
-    float = true,
-})

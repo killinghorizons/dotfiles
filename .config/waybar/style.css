@@ -11,8 +11,8 @@
 @define-color white #ffffff; 
 
 * {
-    font-family: "BlexMono Nerd Font Mono", monospace;
-    font-size: 12px;
+    font-family: "JetBrainsMono Nerd Font Mono", monospace;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -68,23 +68,23 @@ button:hover {
 }
 
 #pulseaudio {
-  color: @cyn;
-  border-bottom: 4px solid @cyn;
+  color: @blu;
+  border-bottom: 4px solid @blu;
 }
 
 #backlight {
-  color: @cyn;
-  border-bottom: 4px solid @cyn;
+  color: @grn;
+  border-bottom: 4px solid @grn;
 }
 
 #power-profiles-daemon {
-  color: @cyn;
-  border-bottom: 4px solid @cyn;
+  color: @red;
+  border-bottom: 4px solid @red;
 }
 
 #clock {
-    color: @cyn;
-    border-bottom: 4px solid @cyn;
+    color: @white;
+    border-bottom: 4px solid @white;
 }
 
 #battery {
@@ -103,7 +103,7 @@ button:hover {
 }
 
 #cpu {
-    color: @grn;
+    color: @white;
     border-bottom: 4px solid @grn;
 }
 

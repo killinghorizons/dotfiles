@@ -32,6 +32,12 @@ abbr -a nv nvim
 abbr -a nvo --set-cursor "cd % && nvim"
 abbr -a nvp nvim +Man!
 
+abbr -a ll ls -l
+abbr -a lla ls -la
+
+abbr -a rmr rm -r
+abbr -a rmrf rm -rf
+
 abbr -a fixpacman sudo rm /var/lib/pacman/db.lck
 abbr -a untar tar -zxvf
 abbr -a wget wget -c

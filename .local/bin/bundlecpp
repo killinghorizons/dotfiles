@@ -1,0 +1,49 @@
+#!/bin/bash
+set -euo pipefail
+
+mkdir -p src
+
+cat <<'EOF' > src/main.cpp
+#include <iostream>
+int main() {
+  std::cout << "Hello, World!" << '\n';
+  return 0;
+}
+EOF
+
+cat <<'EOF' > .clang-format
+BasedOnStyle: LLVM
+AlignAfterOpenBracket: BlockIndent
+BinPackParameters: false
+BinPackArguments: false
+ColumnLimit: 120
+EOF
+
+cat <<'EOF' > meson.build
+project('app', 'cpp',
+  default_options: ['cpp_std=c++20'])
+executable('app', 'src/main.cpp')
+EOF
+
+cat <<'EOF' > .clangd
+CompileFlags:
+  CompilationDatabase: build/
+  Add: [-std=c++20]
+EOF
+
+cat <<'EOF' > .clang-tidy
+Checks: 'clang-diagnostic-*,clang-analyzer-*,readability-*'
+WarningsAsErrors: ''
+EOF
+
+cat <<'EOF' > .gitignore
+build/
+compile_commands.json
+EOF
+
+if [ ! -d build ]; then
+  meson setup build -Db_compile_commands=true
+fi
+
+ln -sf build/compile_commands.json compile_commands.json
+ninja -C build

@@ -21,19 +21,15 @@ fish_add_path ~/.local/bin
 set -gx LS_COLORS (vivid generate ansi)
 
 ## Useful aliases
-# Replace ls with eza
-# alias ls='eza -al --color=always --group-directories-first --icons' # preferred listing alias la='eza -a --color=always --group-directories-first --icons'  # all files and dirs
-# alias ll='eza -l --color=always --group-directories-first --icons'  # long format
-# alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
-# alias l.="eza -a | grep -e '^\.'"                                     # show only dotfiles
+alias ls="lsd"
+alias ls="lsd -ah"
+alias ll="lsd -l"
+alias lla="lsd -lah"
 
 # Common use
 abbr -a nv nvim
 abbr -a nvo --set-cursor "cd % && nvim"
 abbr -a nvp nvim +Man!
-
-abbr -a ll ls -l
-abbr -a lla ls -la
 
 abbr -a rmr rm -r
 abbr -a rmrf rm -rf

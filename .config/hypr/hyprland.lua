@@ -84,8 +84,8 @@ hl.config({
         follow_mouse = 1,
         sensitivity = 0,
         accel_profile = "flat",
-        repeat_rate = 35,
-        repeat_delay = 200,
+        repeat_rate = 50,
+        repeat_delay = 300,
         touchpad = {
             natural_scroll = true,
         },
@@ -100,11 +100,11 @@ hl.config({
 -- Animations
 hl.curve("easeOut", { type = "bezier", points = { { 0.2, 1 }, { 0.2, 1 } } })
 -- animation = windows, 1, 5, easeOut
-hl.animation({ leaf = "windows", enabled = true, speed = 5, bezier = "easeOut" })
+hl.animation({ leaf = "windows", enabled = true, speed = 3, bezier = "easeOut" })
 -- animation = windowsIn, 1, 5, default, popin
-hl.animation({ leaf = "windowsIn", enabled = true, speed = 5, bezier = "default", style = "popin" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 3, bezier = "default", style = "popin" })
 -- animation = workspaces, 1, 6, default
-hl.animation({ leaf = "workspaces", enabled = true, speed = 7, bezier = "default" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 3, bezier = "default" })
 
 -- Binds
 -- Programs
@@ -215,14 +215,6 @@ hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m output"))
 --
 
 -- Window rules
-local suppressMaximizeRule = hl.window_rule({
-    -- Ignore maximize requests from all apps. You'll probably like this.
-    name = "suppress-maximize-events",
-    match = { class = ".*" },
-
-    suppress_event = "maximize",
-})
-
 hl.window_rule({
     -- Fix some dragging issues with XWayland
     name = "fix-xwayland-drags",

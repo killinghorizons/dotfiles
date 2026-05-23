@@ -8,10 +8,10 @@ configuration {
 * {
     /* Dracula theme colour palette */
     fg: #ffffff;
-    bg: #101010;
+    bg: #16181a;
     active-bg: #272727;
-    red: #ff5733;
-    green: #86cd82;
+    red: #ff6e5e;
+    green: #5eff6c;
 
     font: "JetBrainsMono Nerd Font Mono 12";
 
@@ -28,10 +28,10 @@ configuration {
 
 #window {
     background-color: @background-color;
-    border:           2;
-    border-radius:    6;
+    border:           2px;
+    border-radius:    6px;
     border-color:     @green;
-    padding:          15;
+    padding:          16px;
 }
 #mainbox {
     border:  0;

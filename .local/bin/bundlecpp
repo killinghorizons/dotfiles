@@ -1,49 +1,129 @@
-#!/bin/bash
-set -euo pipefail
+#!/usr/bin/env python3
+import argparse
+import subprocess
+from pathlib import Path
 
-mkdir -p src
-
-cat <<'EOF' > src/main.cpp
+MAIN_CPP = """\
 #include <iostream>
+
 int main() {
-  std::cout << "Hello, World!" << '\n';
-  return 0;
+\tstd::cout << "Hello, World!" << '\\n';
+\treturn 0;
 }
-EOF
+"""
 
-cat <<'EOF' > .clang-format
-BasedOnStyle: LLVM
-AlignAfterOpenBracket: BlockIndent
-BinPackParameters: false
-BinPackArguments: false
-ColumnLimit: 120
-EOF
+CLANG_FORMAT = """\
+BasedOnStyle: WebKit
+IndentWidth: 8
+TabWidth: 8
+AccessModifierOffset: -8
+UseTab: ForIndentation
+BreakBeforeBraces: Attach
+SortIncludes: false
+IncludeBlocks: Preserve
+AlignAfterOpenBracket: DontAlign
+"""
 
-cat <<'EOF' > meson.build
-project('app', 'cpp',
-  default_options: ['cpp_std=c++20'])
-executable('app', 'src/main.cpp')
-EOF
+CMAKE_LISTS = """\
+cmake_minimum_required(VERSION 3.20)
+project({name} LANGUAGES CXX)
 
-cat <<'EOF' > .clangd
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+file(GLOB_RECURSE SOURCES "src/*.cpp")
+add_executable({name} ${{SOURCES}})
+target_include_directories({name} PRIVATE src)
+"""
+
+CLANGD = """\
 CompileFlags:
   CompilationDatabase: build/
   Add: [-std=c++20]
-EOF
+"""
 
-cat <<'EOF' > .clang-tidy
-Checks: 'clang-diagnostic-*,clang-analyzer-*,readability-*'
-WarningsAsErrors: ''
-EOF
+CLANG_TIDY = """\
+Checks: '-*,readability-identifier-naming'
+CheckOptions:
+  - key: readability-identifier-naming.FunctionCase
+    value: lower_case
+  - key: readability-identifier-naming.VariableCase
+    value: lower_case
+  - key: readability-identifier-naming.PrivateMemberPrefix
+    value: m_
+  - key: readability-identifier-naming.PrivateMemberCase
+    value: lower_case
+  - key: readability-identifier-naming.ProtectedMemberPrefix
+    value: m_
+  - key: readability-identifier-naming.ProtectedMemberCase
+    value: lower_case
+  - key: readability-identifier-naming.ParameterCase
+    value: lower_case
+  - key: readability-identifier-naming.ConstantCase
+    value: UPPER_CASE
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+"""
 
-cat <<'EOF' > .gitignore
+GITIGNORE = """\
 build/
 compile_commands.json
-EOF
+"""
 
-if [ ! -d build ]; then
-  meson setup build -Db_compile_commands=true
-fi
 
-ln -sf build/compile_commands.json compile_commands.json
-ninja -C build
+def write_file(path: Path, content: str, overwrite: bool = False):
+    if path.exists() and not overwrite:
+        print(f"  skipping {path} (already exists)")
+        return
+    path.write_text(content)
+    print(f"  wrote {path}")
+
+
+def setup_project(name: str, overwrite: bool):
+    src = Path("src")
+    src.mkdir(exist_ok=True)
+
+    write_file(src / "main.cpp", MAIN_CPP, overwrite)
+    write_file(Path(".clang-format"), CLANG_FORMAT, overwrite)
+    write_file(Path("CMakeLists.txt"), CMAKE_LISTS.format(name=name), overwrite)
+    write_file(Path(".clangd"), CLANGD, overwrite)
+    write_file(Path(".clang-tidy"), CLANG_TIDY, overwrite)
+    write_file(Path(".gitignore"), GITIGNORE, overwrite)
+
+
+def build():
+    build_dir = Path("build")
+    if not build_dir.exists():
+        print("  configuring cmake...")
+        subprocess.run(["cmake", "-S", ".", "-B", "build", "-G", "Ninja"], check=True)
+
+    print("  building...")
+    subprocess.run(["cmake", "--build", "build"], check=True)
+
+    symlink = Path("compile_commands.json")
+    if not symlink.exists():
+        symlink.symlink_to("build/compile_commands.json")
+        print("  linked compile_commands.json")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="C++ project setup")
+    parser.add_argument("--name", default="app", help="project name (default: app)")
+    parser.add_argument(
+        "--overwrite", action="store_true", help="overwrite existing files"
+    )
+    parser.add_argument("--no-build", action="store_true", help="skip build step")
+    args = parser.parse_args()
+
+    print(f"setting up project '{args.name}'...")
+    setup_project(args.name, args.overwrite)
+
+    if not args.no_build:
+        build()
+
+    print("done.")
+
+
+if __name__ == "__main__":
+    main()

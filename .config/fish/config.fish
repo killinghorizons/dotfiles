@@ -18,11 +18,8 @@ end
 # Add ~/.local/bin to PATH
 fish_add_path ~/.local/bin
 
-set -gx LS_COLORS (vivid generate ansi)
-
 ## Useful aliases
 alias ls="lsd"
-alias ls="lsd -ah"
 alias ll="lsd -l"
 alias lla="lsd -lah"
 
@@ -40,10 +37,10 @@ abbr -a wget wget -c
 abbr -a grep grep --color=auto
 abbr -a hw hwinfo --short
 abbr -a update sudo pacman -Syu
-# Get fastest mirrors
 abbr -a mirror sudo cachyos-rate-mirrors
-# Cleanup orphaned packages
-# Get the error messages from journalctl
 abbr -a jctl journalctl -p 3 -xb
+
+abbr -a ninjac ninja -C build/
+abbr -a cmakeb cmake --build build
 
 fnm env --use-on-cd | source

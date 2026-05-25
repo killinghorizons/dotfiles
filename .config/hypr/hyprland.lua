@@ -8,10 +8,10 @@ local home = os.getenv("HOME")
 
 -- Autostart
 hl.on("hyprland.start", function()
-    hl.exec_cmd("hyprsunset")
-    hl.exec_cmd("waybar")
-    hl.exec_cmd("swaybg -i ~/.config/hypr/walls/geisha_colors.jpeg")
-    hl.exec_cmd("systemctl --user start hyprpolkitagent")
+  hl.exec_cmd("hyprsunset")
+  hl.exec_cmd("waybar")
+  hl.exec_cmd("swaybg -i ~/.config/hypr/walls/arch.png")
+  hl.exec_cmd("systemctl --user start hyprpolkitagent")
 end)
 
 -- Monitor
@@ -31,70 +31,70 @@ hl.env("WLR_NO_HARDWARE_CURSORS", "1")
 
 -- Core
 hl.config({
-    general = {
-        gaps_in = 5,
-        gaps_out = 5,
-        border_size = 2,
-        resize_on_border = true,
-        col = {
-            active_border = { colors = { "rgb(135,206,235)" } },
-        },
-        allow_tearing = false,
-        layout = "dwindle",
+  general = {
+    gaps_in = 2,
+    gaps_out = 0,
+    border_size = 2,
+    resize_on_border = true,
+    col = {
+      active_border = { colors = { "rgb(135,206,235)" } },
     },
+    allow_tearing = false,
+    layout = "dwindle",
+  },
 
-    animations = {
-        enabled = true,
-    },
+  animations = {
+    enabled = false,
+  },
 
-    ecosystem = {
-        no_update_news = true,
-        no_donation_nag = true,
-    },
+  ecosystem = {
+    no_update_news = true,
+    no_donation_nag = true,
+  },
 
-    decoration = {
-        rounding = 0,
-        rounding_power = 0,
-        blur = { enabled = false },
-    },
+  decoration = {
+    rounding = 0,
+    rounding_power = 0,
+    blur = { enabled = false },
+  },
 
-    cursor = {
-        no_hardware_cursors = false,
-    },
+  cursor = {
+    no_hardware_cursors = false,
+  },
 
-    scrolling = {
-        fullscreen_on_one_column = true,
-        column_width = 0.5,
-        direction = "right",
-    },
+  scrolling = {
+    fullscreen_on_one_column = true,
+    column_width = 0.5,
+    direction = "right",
+  },
 
-    misc = {
-        disable_hyprland_logo = true,
-        mouse_move_enables_dpms = true,
-        key_press_enables_dpms = true,
-        vrr = 1,
-    },
+  misc = {
+    disable_hyprland_logo = true,
+    mouse_move_enables_dpms = true,
+    key_press_enables_dpms = true,
+    vrr = 1,
+  },
 
-    xwayland = {
-        force_zero_scaling = true,
-    },
+  xwayland = {
+    force_zero_scaling = true,
+  },
 
-    input = {
-        kb_layout = "fr",
-        follow_mouse = 1,
-        sensitivity = 0,
-        accel_profile = "flat",
-        repeat_rate = 50,
-        repeat_delay = 300,
-        touchpad = {
-            natural_scroll = true,
-        },
+  input = {
+    kb_layout = "fr",
+    follow_mouse = 1,
+    sensitivity = 0,
+    accel_profile = "flat",
+    repeat_rate = 50,
+    repeat_delay = 300,
+    touchpad = {
+      natural_scroll = true,
     },
+  },
 
-    dwindle = {
-        force_split = 2,
-        preserve_split = true,
-    },
+  dwindle = {
+    force_split = 2,
+    preserve_split = true,
+  },
 })
 
 -- Animations
@@ -139,21 +139,21 @@ hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
 
 -- Workspaces (AZERTY)
 local ws_keys = {
-    { "ampersand", 1 },
-    { "eacute", 2 },
-    { "quotedbl", 3 },
-    { "apostrophe", 4 },
-    { "parenleft", 5 },
-    { "minus", 6 },
-    { "egrave", 7 },
-    { "underscore", 8 },
-    { "ccedilla", 9 },
-    { "agrave", 10 },
+  { "ampersand", 1 },
+  { "eacute", 2 },
+  { "quotedbl", 3 },
+  { "apostrophe", 4 },
+  { "parenleft", 5 },
+  { "minus", 6 },
+  { "egrave", 7 },
+  { "underscore", 8 },
+  { "ccedilla", 9 },
+  { "agrave", 10 },
 }
 
 for _, ws in ipairs(ws_keys) do
-    hl.bind(mainMod .. " + " .. ws[1], hl.dsp.focus({ workspace = ws[2] }))
-    hl.bind(mainMod .. " + SHIFT + " .. ws[1], hl.dsp.window.move({ workspace = ws[2] }))
+  hl.bind(mainMod .. " + " .. ws[1], hl.dsp.focus({ workspace = ws[2] }))
+  hl.bind(mainMod .. " + SHIFT + " .. ws[1], hl.dsp.window.move({ workspace = ws[2] }))
 end
 
 -- Mouse
@@ -167,35 +167,35 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Volume & brightness
 hl.bind(
-    "XF86AudioLowerVolume",
-    hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/volume.sh --dec"),
-    { locked = true, repeating = true }
+  "XF86AudioLowerVolume",
+  hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/volume.sh --dec"),
+  { locked = true, repeating = true }
 )
 hl.bind(
-    "XF86AudioRaiseVolume",
-    hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/volume.sh --inc"),
-    { locked = true, repeating = true }
+  "XF86AudioRaiseVolume",
+  hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/volume.sh --inc"),
+  { locked = true, repeating = true }
 )
 hl.bind(
-    "XF86AudioMute",
-    hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/volume.sh --toggle-mut"),
-    { locked = true, repeating = true }
+  "XF86AudioMute",
+  hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/volume.sh --toggle-mut"),
+  { locked = true, repeating = true }
 )
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/backlight.sh --dec"), {
-    locked = true,
-    repeating = true,
+  locked = true,
+  repeating = true,
 })
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/backlight.sh --inc"), {
-    locked = true,
-    repeating = true,
+  locked = true,
+  repeating = true,
 })
 hl.bind(mainMod .. " + SHIFT + DOWN", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/backlight.sh --dec"), {
-    locked = true,
-    repeating = true,
+  locked = true,
+  repeating = true,
 })
 hl.bind(mainMod .. " + SHIFT + UP", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/backlight.sh --inc"), {
-    locked = true,
-    repeating = true,
+  locked = true,
+  repeating = true,
 })
 
 -- Media
@@ -216,18 +216,18 @@ hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m output"))
 
 -- Window rules
 hl.window_rule({
-    -- Fix some dragging issues with XWayland
-    name = "fix-xwayland-drags",
-    match = {
-        class = "^$",
-        title = "^$",
-        xwayland = true,
-        float = true,
-        fullscreen = false,
-        pin = false,
-    },
+  -- Fix some dragging issues with XWayland
+  name = "fix-xwayland-drags",
+  match = {
+    class = "^$",
+    title = "^$",
+    xwayland = true,
+    float = true,
+    fullscreen = false,
+    pin = false,
+  },
 
-    no_focus = true,
+  no_focus = true,
 })
 
 hl.window_rule({ match = { class = "nwg-look" }, float = true, size = { 800, 500 } })

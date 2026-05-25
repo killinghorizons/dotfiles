@@ -9,13 +9,13 @@ configuration {
   margin: 0;
   padding: 0;
   spacing: 0;
-  background: #101010;
+  background: #16181a;
   background-alt: #272727;
-  line: #44475a;
+  line: #5eff6c;
   foreground: #ffffff;
   foreground-alt: #fafafa;
   comment: #6272a4;
-  selected: #86cd82;
+  selected: #44475a;
   background-color: @background;
 }
 

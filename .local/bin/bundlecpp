@@ -7,21 +7,19 @@ MAIN_CPP = """\
 #include <iostream>
 
 int main() {
-\tstd::cout << "Hello, World!" << '\\n';
-\treturn 0;
+  std::cout << "Hello, World!" << '\\n';
+  return 0;
 }
 """
 
 CLANG_FORMAT = """\
-BasedOnStyle: WebKit
-IndentWidth: 8
-TabWidth: 8
-AccessModifierOffset: -8
-UseTab: ForIndentation
-BreakBeforeBraces: Attach
-SortIncludes: false
+BasedOnStyle: Google
+AccessModifierOffset: -2
+AlignAfterOpenBracket: BlockIndent
+BinPackParameters: false
+BinPackArguments: false
+ColumnLimit: 80
 IncludeBlocks: Preserve
-AlignAfterOpenBracket: DontAlign
 """
 
 CMAKE_LISTS = """\
@@ -44,18 +42,18 @@ CompileFlags:
 """
 
 CLANG_TIDY = """\
-Checks: '-*,readability-identifier-naming'
+Checks: '-*,readability-identifier-naming,modernize-*, google-*'
 CheckOptions:
   - key: readability-identifier-naming.FunctionCase
     value: lower_case
   - key: readability-identifier-naming.VariableCase
     value: lower_case
-  - key: readability-identifier-naming.PrivateMemberPrefix
-    value: m_
+  - key: readability-identifier-naming.PrivateMemberSuffix
+    value: _
   - key: readability-identifier-naming.PrivateMemberCase
     value: lower_case
-  - key: readability-identifier-naming.ProtectedMemberPrefix
-    value: m_
+  - key: readability-identifier-naming.ProtectedMemberSuffix
+    value: _
   - key: readability-identifier-naming.ProtectedMemberCase
     value: lower_case
   - key: readability-identifier-naming.ParameterCase

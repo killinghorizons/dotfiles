@@ -47,13 +47,11 @@ CheckOptions:
   - key: readability-identifier-naming.FunctionCase
     value: CamelCase
 
-  # Local variables → camelCase
   - key: readability-identifier-naming.VariableCase
-    value: camelBack
+    value: lower_case
 
-  # Parameters → camelCase
   - key: readability-identifier-naming.ParameterCase
-    value: camelBack
+    value: lower_case
 
   # Classes → PascalCase
   - key: readability-identifier-naming.ClassCase
